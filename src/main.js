@@ -1,6 +1,7 @@
 require('dotenv').config();
 import Koa from 'koa';
 import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser';
 
 import api from './api';
 
@@ -11,6 +12,8 @@ const app = new Koa();
 const router = new Router();
 
 router.use('/api',api.routes()); //api 라우터 적용
+
+app.use(bodyParser());
 
 //app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
